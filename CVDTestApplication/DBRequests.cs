@@ -9,6 +9,7 @@ namespace CVDTestApplication
                             SUM(e.salary) 'department salary (without chiefs)'
                       FROM employee e JOIN department d ON(e.department_id = d.id)
                     GROUP BY e.department_id";*/
+
             return @"SELECT (SELECT dep.name FROM department dep WHERE dep.id = e.department_id) 'department name', 
 			                SUM(e.salary) 'department salary (without chiefs)',
 			                SUM(e.salary)+IFNULL((SELECT e1.salary FROM employee e1 WHERE e1.id = (
